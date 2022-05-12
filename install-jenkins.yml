@@ -1,6 +1,6 @@
 ---
 - name: Preparing Jenkins Server
-  hosts: jenkins-redhat,jenkins-ubuntu
+  hosts: all,jenkins-redhat,srv-vm-jks01
   become: true
   tasks:
 
@@ -18,8 +18,12 @@
         state: latest
       when: ansible_os_family == 'Debian'
 
-  - name: Install Linux Extras | RedHat
-    shell: sudo amazon-linux-extras install epel -y
+    - name: Installing Epel | Amazon Linux
+      shell: sudo amazon-linux-extras install epel -y
+      when: ansible_distribution == 'Amazon'
+
+  - name: Installing Epel | RedHat
+    shell: sudo yum install epel-release -y
     when: ansible_os_family == 'RedHat'
 
   - name: Installing Linux Apps | RedHat

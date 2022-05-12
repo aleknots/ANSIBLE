@@ -1,3 +1,11 @@
 [aws-jenkins]
 jenkins-redhat
-jenkins-ubuntu
+
+[aws-docker]
+docker-ubuntu
+
+[local-jenkins]
+srv-vm-jks01
+
+[local-docker]
+srv-vm-dkr01
